@@ -52,6 +52,10 @@ react {
 
     /* Autolinking */
     autolinkLibrariesWithApp()
+
+    jsRootDir = file("../../src/")
+    libraryName = "DemonstrateLinkingErrorExample"
+    codegenJavaPackageName = "demonstratelinkingerror.example"
 }
 
 /**
@@ -105,6 +109,15 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+
+    sourceSets {
+        main {
+            java.srcDirs += [
+                "../generated/java",
+                "../generated/jni"
+            ]
+        }
+    }
 }
 
 dependencies {
@@ -131,3 +144,17 @@ tasks.register('invokeLibraryCodegen', Exec) {
 }
 
 preBuild.dependsOn invokeLibraryCodegen
+
+// Run Codegen during development for the example app.
+tasks.register('invokeLibraryCodegenExample', Exec) {
+  workingDir "$rootDir/../"
+  def isWindows = System.getProperty('os.name').toLowerCase().contains('windows')
+
+  if (isWindows) {
+    commandLine 'cmd', '/c', 'npx bob build --target codegen'
+  } else {
+    commandLine 'sh', '-c', 'npx bob build --target codegen'
+  }
+}
+
+preBuild.dependsOn invokeLibraryCodegenExample

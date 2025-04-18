@@ -82,5 +82,9 @@ lib/
 ios/generated
 android/generated
 
+# React Native Codegen
+example/ios/generated
+example/android/generated
+
 # React Native Nitro Modules
 nitrogen/

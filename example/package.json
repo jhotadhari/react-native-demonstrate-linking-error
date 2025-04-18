@@ -28,5 +28,31 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "codegen",
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ]
+    ]
+  },
+  "codegenConfig": {
+    "name": "RNDemonstrateLinkingErrorExampleSpec",
+    "type": "all",
+    "jsSrcsDir": "src",
+    "outputDir": {
+      "ios": "ios/generated",
+      "android": "android/generated"
+    },
+    "android": {
+      "javaPackageName": "demonstratelinkingerror.example"
+    },
+    "includesGeneratedCode": true
   }
 }

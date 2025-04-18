@@ -1,7 +1,8 @@
 import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'react-native-demonstrate-linking-error';
+// import { multiply } from 'react-native-demonstrate-linking-error';
+import DemonstrateLinkingErrorExample from './NativeDemonstrateLinkingErrorExample'
 
-const result = multiply(3, 7);
+const result = DemonstrateLinkingErrorExample.add(3, 7);
 
 export default function App() {
   return (
